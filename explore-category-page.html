@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore String Instruments - MusicMart</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container h1 {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 12px;
+            color: #ecf0f1;
+        }
+        
+        .search-container {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+        }
+        
+        .search-container input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-container button {
+            padding: 10px 15px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        /* Category Banner */
+        .category-banner {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .category-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .banner-overlay h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .banner-overlay p {
+            font-size: 18px;
+            max-width: 600px;
+        }
+        
+        /* Filters */
+        .filters {
+            background: white;
+            padding: 15px 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-group label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .filter-group select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .price-input {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .apply-filter {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        
+        /* Product Grid */
+        .product-container {
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sort-options select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            position: relative;
+            height: 200px;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .discount-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 5px;
+        }
+        
+        .brand {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        
+        .price-container {
+            margin-bottom: 10px;
+        }
+        
+        .current-price {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #7f8c8d;
+            margin-left: 5px;
+        }
+        
+        .discount {
+            color: #27ae60;
+            margin-left: 5px;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .stars {
+            color: #f39c12;
+        }
+        
+        .reviews {
+            color: #7f8c8d;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            padding: 0 15px 15px;
+        }
+        
+        .add-to-cart, .buy-now {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .add-to-cart {
+            background: #3498db;
+            color: white;
+        }
+        
+        .buy-now {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .page-link {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .page-link.active {
+            background: #2c3e50;
+            color: white;
+            border-color: #2c3e50;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+        }
+        
+        .footer-columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid #34495e;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>MUSIC MART</h1>
+            <p class="tagline">Your Rhythm, Our Instruments</p>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search for instruments, brands and more...">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="login_page.html"><i class="fas fa-user"></i> Login</a>
+            <a href="watchlist-page.html"><i class="fas fa-heart"></i> Wishlist</a>
+            <a href="cart-page.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+        </div>
+    </header>
+
+    <!-- Category Banner -->
+    <div class="category-banner">
+        <img src="eplore_string_inst.jpg" alt="String Instruments">
+        <div class="banner-overlay">
+            <h1>String Instruments</h1>
+            <p>Discover our wide range of guitars, violins, cellos, and other string instruments for every skill level and budget</p>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>Type:</label>
+                <select>
+                    <option value="">All Types</option>
+                    <option value="acoustic">Acoustic Guitars</option>
+                    <option value="electric">Electric Guitars</option>
+                    <option value="bass">Bass Guitars</option>
+                    <option value="violin">Violins</option>
+                    <option value="cello">Cellos</option>
+                    <option value="ukulele">Ukuleles</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Brand:</label>
+                <select>
+                    <option value="">All Brands</option>
+                    <option value="fender">Fender</option>
+                    <option value="gibson">Gibson</option>
+                    <option value="yamaha">Yamaha</option>
+                    <option value="ibanez">Ibanez</option>
+                    <option value="stradivarius">Stradivarius</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Price:</label>
+                <div class="price-range">
+                    <input type="number" placeholder="Min" class="price-input">
+                    <span>to</span>
+                    <input type="number" placeholder="Max" class="price-input">
+                </div>
+            </div>
+            
+            <button class="apply-filter">Apply Filters</button>
+        </div>
+        
+        <div class="filter-row">
+            <div class="filter-group">
+                <label>Discount:</label>
+                <select>
+                    <option value="">All Discounts</option>
+                    <option value="10">10% and above</option>
+                    <option value="20">20% and above</option>
+                    <option value="30">30% and above</option>
+                    <option value="40">40% and above</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Rating:</label>
+                <select>
+                    <option value="">All Ratings</option>
+                    <option value="4">4★ & above</option>
+                    <option value="3">3★ & above</option>
+                    <option value="2">2★ & above</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Level:</label>
+                <select>
+                    <option value="">All Levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="professional">Professional</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Listings -->
+    <div class="product-container">
+        <div class="section-header">
+            <h2>String Instruments (52 products)</h2>
+            <div class="sort-options">
+                <label>Sort By:</label>
+                <select>
+                    <option value="popularity">Popularity</option>
+                    <option value="price_low">Price: Low to High</option>
+                    <option value="price_high">Price: High to Low</option>
+                    <option value="rating">Customer Rating</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="acoustic_guitar.jpg" alt="Acoustic Guitar">
+                    <span class="discount-tag">15% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3>Acoustic Guitar</h3>
+                    <p class="brand">Yamaha</p>
+                    <div class="price-container">
+                        <span class="current-price">₹12,749</span>
+                        <span class="original-price">₹14,999</span>
+                        <span class="discount">15% off</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(187)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="electric_guitar.jpeg" alt="Electric Guitar">
+                    <span class="discount-tag">20% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3>Electric Guitar</h3>
+                    <p class="brand">Fender</p>
+                    <div class="price-container">
+                        <span class="current-price">₹15,999</span>
+                        <span class="original-price">₹19,999</span>
+                        <span class="discount">20% off</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(245)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="bass_gutar.jpg" alt="Bass Guitar">
+                </div>
+                <div class="product-info">
+                    <h3>Bass Guitar</h3>
+                    <p class="brand">Ibanez</p>
+                    <div class="price-container">
+                        <span class="current-price">₹22,999</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(312)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="violin.jpg" alt="Violin">
+                    <span class="discount-tag">10% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3>Professional Violin</h3>
+                    <p class="brand">Stradivarius</p>
+                    <div class="price-container">
+                        <span class="current-price">₹8,999</span>
+                        <span class="original-price">₹9,999</span>
+                        <span class="discount">10% off</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(85)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Soprano Ukulele_strings.jpeg" alt="Ukulele">
+                    <span class="discount-tag">25% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3>Soprano Ukulele</h3>
+                    <p class="brand">Kala</p>
+                    <div class="price-container">
+                        <span class="current-price">₹2,999</span>
+                        <span class="original-price">₹3,999</span>
+                        <span class="discount">25% off</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(132)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="Student-I-cello.jpg" alt="Cello">
+                </div>
+                <div class="product-info">
+                    <h3>Student Cello</h3>
+                    <p class="brand">Stentor</p>
+                    <div class="price-container">
+                        <span class="current-price">₹32,500</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(46)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white;text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="A-Style Mandolin.jpeg" alt="Mandolin">
+                    <span class="discount-tag">15% OFF</span>
+                </div>
+                <div class="product-info">
+                    <h3>A-Style Mandolin</h3>
+                    <p class="brand">Eastman</p>
+                    <div class="price-container">
+                        <span class="current-price">₹15,299</span>
+                        <span class="original-price">₹17,999</span>
+                        <span class="discount">15% off</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="reviews">(37)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="5-String Banjo.jpg" alt="Banjo">
+                </div>
+                <div class="product-info">
+                    <h3>5-String Banjo</h3>
+                    <p class="brand">Deering</p>
+                    <div class="price-container">
+                        <span class="current-price">₹29,999</span>
+                    </div>
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="reviews">(28)</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                    <button class="buy-now"><i class="fas fa-bolt"></i> <a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">4</a>
+            <a href="#" class="page-link">5</a>
+            <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="stories.html">Success Stories</a></li>
+                    <li><a href="press.html">Press</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="payments.html">Payments</a></li>
+                    <li><a href="shipping.html">Shipping</a></li>
+                    <li><a href="cancellations.html">Cancellations & Returns</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="report.html">Report Infringement</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Policy</h3>
+                <ul>
+                    <li><a href="return-policy.html">Return Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><a href="security.html">Security</a></li>
+                    <li><a href="privacy.html">Privacy</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Social</h3>
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Download App</h3>
+                <div class="app-links">
+                    <a href="#"><img src="/api/placeholder/140/40" alt="Get it on Google Play"></a>
+                    <a href="#"><img src="/api/placeholder/140/40" alt="Download on App Store"></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 MusicMart. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

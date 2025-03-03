@@ -1,0 +1,542 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MusicMart - Online Music Instruments Store</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header style="border-radius: 10%;">
+            <div class="logo-container">
+                <h1>MUSIC MART</h1>
+                <p class="tagline">Your Rhythm, Our Instruments</p>
+            </div>
+            <div class="search-container">
+                <input type="text" placeholder="Search for instruments, brands and more...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-links">
+                <a href="login_page.html"><i class="fas fa-user"></i> Login</a>
+                <a href="watchlist-page.html"><i class="fas fa-heart"></i> Wishlist</a>
+                <a href="cart-page.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="orders.html"><i class="fas fa-box"></i> Orders</a>
+            </div>
+        </header>
+        <!-- Categories Navigation -->
+        <nav class="categories"  style="border-radius: 10%;">
+            <div class="category">
+                <img src="guitar.jpeg" alt="Guitars">
+                <p>Guitars</p>
+            </div>
+            <div class="category">
+                <img src="KEYBOARD.jpg" alt="Keyboards">
+                <p>Keyboards</p>
+            </div>
+            <div class="category">
+                <img src="drum-set.jpg" alt="Drums">
+                <p>Drums</p>
+            </div>
+            <div class="category">
+                <img src="wind.jpg" alt="Wind">
+                <p>Wind</p>
+            </div>
+            <div class="category">
+                <img src="Accessories.jpg" alt="Accessories">
+                <p>Accessories</p>
+            </div>
+            <div class="category">
+                <img src="mike.jpg" alt="Recording">
+                <p>Recording</p>
+            </div>
+            <div class="category">
+                <img src="dj.jpg" alt="DJ Equipment">
+                <p>DJ Gear</p>
+            </div>
+        </nav>
+    
+        <!-- Banner Slider -->
+        <section class="banner-slider">
+            <div class="banner current">
+                <img src="music_banner.jpg" alt="Sale Banner">
+                <div class="banner-content">
+                    <h2>Festival Season Sale</h2>
+                    <p>Up to 40% off on selected instruments</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+        </section>
+    </div> 
+        <!-- Image gallery below the music player -->
+        <div class="music-gallery">
+            <div class="gallery-header">
+                <h2>Enjoy the Music</h2>
+            </div>
+            <div class="gallery-images">
+                <div class="gallery-item">
+                    <img src="keyboard2.jpeg" alt="Classical Hits">
+                    <p>PIANO</p>
+                        <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\piano.mp3" data-title="Classical Hits">Play Music</button>
+                        <button class="pause-music-btn">Pause Music</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="guitar.jpeg" alt="Rock Collection">
+                    <p>GUITAR</p>
+                    <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\guitar_music.mp3" data-title="Rock Collection">Play Music</button>
+                    <button class="pause-music-btn">Pause Music</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="violin.jpg" alt="Jazz Favorites">
+                    <p>VIOLIN</p>
+                    <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\violin_music.mp3" data-title="Jazz Favorites">Play Music</button>
+                    <button class="pause-music-btn">Pause Music</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="drum-set.jpg" alt="Pop Sensations">
+                    <p>JORGE SET</p>
+                    <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\drum_music.mp3" data-title="Pop Sensations">Play Music</button>
+                    <button class="pause-music-btn">Pause Music</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="tabala.jpeg" alt="World Music">
+                    <p>TABALA</p>
+                    <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\tabala_music.mp3" data-title="World Music">Play Music</button>
+                    <button class="pause-music-btn">Pause Music</button>
+                </div>
+                <div class="gallery-item">
+                    <img src="wind4.png" alt="Relaxing Sounds">
+                    <p>WIND</p>
+                    <button class="play-music-btn" data-music="C:\Users\SATISH\OneDrive\Documents\Desktop\adoc html intern\_music_instruments_\music_instruments\wind_music.mp3" data-title="Relaxing Sounds">Play Music</button>
+                    <button class="pause-music-btn">Pause Music</button>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- Deals of the Day -->
+        <section class="deals">
+            <div class="section-header">
+                <h2>Deals of the Day</h2>
+                <a href="deals.html" class="view-all">View All</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="guitar.jpeg" alt="Electric Guitar">
+                        <span class="discount-tag">20% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Electric Guitar</h3>
+                        <p class="brand">Fender</p>
+                        <div class="price-container">
+                            <span class="current-price">₹15,999</span>
+                            <span class="original-price">₹19,999</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(245)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>    
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="KEYBOARD.jpg" alt="Digital Piano">
+                        <span class="discount-tag">15% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Digital Piano</h3>
+                        <p class="brand">Yamaha</p>
+                        <div class="price-container">
+                            <span class="current-price">₹42,500</span>
+                            <span class="original-price">₹50,000</span>
+                            <span class="discount">15% off</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(189)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i><a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="drum-set.jpg" alt="Acoustic Drum Set">
+                        <span class="discount-tag">25% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Acoustic Drum Set</h3>
+                        <p class="brand">Pearl</p>
+                        <div class="price-container">
+                            <span class="current-price">₹29,999</span>
+                            <span class="original-price">₹39,999</span>
+                            <span class="discount">25% off</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(126)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="tabala.jpeg" alt="Tabala">
+                        <span class="discount-tag">20% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Wooden Tabala</h3>
+                        <p class="brand">Fender</p>
+                        <div class="price-container">
+                            <span class="current-price">₹6,999</span>
+                            <span class="original-price">₹9,999</span>
+                            <span class="discount">20% off</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(245)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+            </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="violin.jpg" alt="Violin">
+                        <span class="discount-tag">10% OFF</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Professional Violin</h3>
+                        <p class="brand">Stradivarius</p>
+                        <div class="price-container">
+                            <span class="current-price">₹8,999</span>
+                            <span class="original-price">₹9,999</span>
+                            <span class="discount">10% off</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(85)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                
+    
+        </section>
+    
+        <!-- Top Selling Products -->
+        <section class="top-selling">
+            <div class="section-header">
+                <h2>Top Selling Instruments</h2>
+                <a href="top-selling.html" class="view-all">View All</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="bass_gutar.jpg" alt="Bass Guitar">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bass Guitar</h3>
+                        <p class="brand">Ibanez</p>
+                        <div class="price-container">
+                            <span class="current-price">₹22,999</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(312)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="electronic-drum-pad.jpeg" alt="Electronic Drum Pad">
+                    </div>
+                    <div class="product-info">
+                        <h3>Electronic Drum Pad</h3>
+                        <p class="brand">Roland</p>
+                        <div class="price-container">
+                            <span class="current-price">₹12,499</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(178)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="micccro_phone.jpg" alt="Microphone">
+                    </div>
+                    <div class="product-info">
+                        <h3>Professional Microphone</h3>
+                        <p class="brand">Shure</p>
+                        <div class="price-container">
+                            <span class="current-price">₹9,499</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(422)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="wind.jpg" alt="Saxophone">
+                    </div>
+                    <div class="product-info">
+                        <h3>Alto Saxophone</h3>
+                        <p class="brand">Selmer</p>
+                        <div class="price-container">
+                            <span class="current-price">₹52,999</span>
+                        </div>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(76)</span>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                    </div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="bass_gutar.jpg" alt="Bass Guitar">
+                        </div>
+                        <div class="product-info">
+                            <h3>Bass Guitar</h3>
+                            <p class="brand">Ibanez</p>
+                            <div class="price-container">
+                                <span class="current-price">₹22,999</span>
+                            </div>
+                            <div class="rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="reviews">(312)</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i>  <a href="add-cart-page (1).html" style="color: white;">Add to Cart</a></button>
+                            <button class="add-to-cart"><i class="fas fa-shopping-cart"></i> <a href="buy-now-page.html" style="color: white;">Buy Now</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Featured Categories -->
+        <section class="featured-categories">
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+            </div>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="eplore_string_inst.jpg" alt="String Instruments">
+                    <div class="category-info">
+                        <h3>String Instruments</h3>
+                        <p>Guitars, Violins, Cellos & more</p>
+                        <a href="explore-category-page.html" class="view-category">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="explore_keyboard_inst.jpg" alt="Keyboard Instruments">
+                    <div class="category-info">
+                        <h3>Keyboard Instruments</h3>
+                        <p>Pianos, Synthesizers & more</p>
+                        <a href="explore-KEYBOARD-page.html" class="view-category">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="explore_drums_inst.jpg" alt="Percussion Instruments">
+                    <div class="category-info">
+                        <h3>Percussion Instruments</h3>
+                        <p>Drums, Cymbals & more</p>
+                        <a href="explore-DRUMS-page.html" class="view-category">Explore</a>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="explore_wind_inst.jpg" alt="Wind Instruments">
+                    <div class="category-info">
+                        <h3>Wind Instruments</h3>
+                        <p>Flutes, Saxophones & more</p>
+                        <a href="explore-WIND-page.html" class="view-category">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Brand Showcase -->
+        <section class="brands">
+            <div class="section-header">
+                <h2>Top Brands</h2>
+            </div>
+            <div class="brand-scroller">
+                <div class="brand-logo"><img src="fender_brand-removebg-preview.png" alt="Fender"></div>
+                <div class="brand-logo"><img src="yamaha_brand2-removebg-preview.png" alt="Yamaha"></div>
+                <div class="brand-logo"><img src="gibson-removebg-preview.png" alt="Gibson"></div>
+                <div class="brand-logo"><img src="shure.png" alt="Shure"></div>
+                <div class="brand-logo"><img src="pearl-removebg-preview.png" alt="Pearl"></div>
+                <div class="brand-logo"><img src="cr7-bg_remover.jpg" alt="Roland"></div>
+            </div>
+        </section>
+    
+            <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const mainPlayer = document.getElementById('mainMusicPlayer');
+        const mainPlayButton = document.getElementById('mainPlayButton');
+        const mainPauseButton = document.getElementById('mainPauseButton');
+        const nowPlayingText = document.getElementById('nowPlaying');
+        
+        let currentlyPlaying = null;
+        let currentTitle = '';
+        
+        // Setup main player buttons
+        mainPlayButton.addEventListener('click', function() {
+            if (currentlyPlaying) {
+                currentlyPlaying.play();
+                updateButtonDisplay(currentlyPlaying, true);
+            } else if (mainPlayer.src) {
+                mainPlayer.play();
+                mainPlayButton.style.display = 'none';
+                mainPauseButton.style.display = 'inline-block';
+                currentlyPlaying = mainPlayer;
+                currentTitle = 'Background Music';
+                nowPlayingText.textContent = 'Now Playing: ' + currentTitle;
+            }
+        });
+        
+        mainPauseButton.addEventListener('click', function() {
+            if (currentlyPlaying) {
+                currentlyPlaying.pause();
+                updateButtonDisplay(currentlyPlaying, false);
+            }
+        });
+        
+        // Get all play buttons in the gallery
+        const playButtons = document.querySelectorAll('.gallery-item .play-music-btn');
+        const pauseButtons = document.querySelectorAll('.gallery-item .pause-music-btn');
+        
+        // Add event listeners to all play buttons
+        playButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                const musicFile = this.getAttribute('data-music');
+                const musicTitle = this.getAttribute('data-title');
+                
+                // Pause current playing audio if exists
+                if (currentlyPlaying) {
+                    currentlyPlaying.pause();
+                    updateButtonDisplay(currentlyPlaying, false);
+                }
+                
+                // Set new source and play
+                mainPlayer.src = musicFile;
+                mainPlayer.load();
+                mainPlayer.play();
+                
+                // Update UI
+                currentlyPlaying = mainPlayer;
+                currentTitle = musicTitle;
+                nowPlayingText.textContent = 'Now Playing: ' + currentTitle;
+                
+                // Show/hide appropriate buttons
+                mainPlayButton.style.display = 'none';
+                mainPauseButton.style.display = 'inline-block';
+                
+                // Update gallery item buttons
+                updateGalleryButtonDisplay(index, true);
+            });
+        });
+        
+        // Add event listeners to all pause buttons
+        pauseButtons.forEach((button, index) => {
+            button.addEventListener('click', function() {
+                if (currentlyPlaying) {
+                    currentlyPlaying.pause();
+                    updateButtonDisplay(currentlyPlaying, false);
+                    updateGalleryButtonDisplay(index, false);
+                }
+            });
+        });
+        
+        // Function to update main button display
+        function updateButtonDisplay(player, isPlaying) {
+            if (isPlaying) {
+                mainPlayButton.style.display = 'none';
+                mainPauseButton.style.display = 'inline-block';
+                nowPlayingText.textContent = 'Now Playing: ' + currentTitle;
+            } else {
+                mainPlayButton.style.display = 'inline-block';
+                mainPauseButton.style.display = 'none';
+                nowPlayingText.textContent = 'Paused: ' + currentTitle;
+            }
+        }
+        
+        // Function to update gallery button display
+        function updateGalleryButtonDisplay(index, isPlaying) {
+            // Reset all gallery buttons first
+            playButtons.forEach((btn, i) => {
+                btn.style.display = 'inline-block';
+                pauseButtons[i].style.display = 'none';
+            });
+            
+            // Update the active button
+            if (isPlaying) {
+                playButtons[index].style.display = 'none';
+                pauseButtons[index].style.display = 'inline-block';
+            } else {
+                playButtons[index].style.display = 'inline-block';
+                pauseButtons[index].style.display = 'none';
+            }
+        }
+        
+        // Handle audio ended event
+        mainPlayer.addEventListener('ended', function() {
+            updateButtonDisplay(mainPlayer, false);
+            playButtons.forEach((btn, i) => {
+                btn.style.display = 'inline-block';
+                pauseButtons[i].style.display = 'none';
+            });
+            nowPlayingText.textContent = '';
+            currentlyPlaying = null;
+        });
+    });
+    </script>
+        
+    </body>
+    </html>

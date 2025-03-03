@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MusicMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container h1 {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .checkout-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .checkout-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .checkout-header h2 {
+            color: #2c3e50;
+        }
+        
+        .checkout-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .product-summary {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .payment-section {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .product-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+        
+        .product-details {
+            flex: 1;
+            padding-left: 15px;
+        }
+        
+        .price-details {
+            margin-top: 20px;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-row {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        .payment-methods {
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        
+        .payment-header {
+            padding: 15px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .payment-header input {
+            margin-right: 10px;
+        }
+        
+        .payment-content {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+        
+        .payment-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .card-details {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .upi-id {
+            display: flex;
+            align-items: center;
+        }
+        
+        .upi-id input {
+            flex: 1;
+        }
+        
+        .upi-id button {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .place-order-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .place-order-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>MUSIC MART</h1>
+            <p class="tagline">Your Rhythm, Our Instruments</p>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h2>Checkout</h2>
+        </div>
+        
+        <div class="checkout-sections">
+            <div class="product-summary">
+                <h3>Order Summary</h3>
+                <div class="product-item">
+                    <img src="guitar.jpeg" alt="Electric Guitar" class="product-image">
+                    <div class="product-details">
+                        <h4>Electric Guitar</h4>
+                        <p>Brand: Fender</p>
+                        <p>Quantity: 1</p>
+                        <p class="price">₹15,999</p>
+                    </div>
+                </div>
+                
+                <div class="price-details">
+                    <div class="price-row">
+                        <span>Subtotal</span>
+                        <span>₹15,999</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Shipping</span>
+                        <span>₹0</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Tax</span>
+                        <span>₹800</span>
+                    </div>
+                    <div class="price-row total-row">
+                        <span>Total</span>
+                        <span>₹16,799</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="payment-section">
+                <h3>Payment Methods</h3>
+                <div class="payment-methods">
+                    <!-- Credit Card Payment -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <input type="radio" name="payment" id="credit-card" checked>
+                            <label for="credit-card">Credit Card</label>
+                        </div>
+                        <div class="payment-content active">
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" placeholder="John Doe">
+                            </div>
+                            <div class="card-details">
+                                <div class="form-group">
+                                    <label for="expiry">Expiry Date</label>
+                                    <input type="text" id="expiry" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Debit Card Payment -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <input type="radio" name="payment" id="debit-card">
+                            <label for="debit-card">Debit Card</label>
+                        </div>
+                        <div class="payment-content">
+                            <div class="form-group">
+                                <label for="debit-number">Card Number</label>
+                                <input type="text" id="debit-number" placeholder="1234 5678 9012 3456">
+                            </div>
+                            <div class="form-group">
+                                <label for="debit-name">Name on Card</label>
+                                <input type="text" id="debit-name" placeholder="John Doe">
+                            </div>
+                            <div class="card-details">
+                                <div class="form-group">
+                                    <label for="debit-expiry">Expiry Date</label>
+                                    <input type="text" id="debit-expiry" placeholder="MM/YY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="debit-cvv">CVV</label>
+                                    <input type="text" id="debit-cvv" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UPI Payment -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <input type="radio" name="payment" id="upi">
+                            <label for="upi">UPI Payment</label>
+                        </div>
+                        <div class="payment-content">
+                            <p>Pay using UPI apps like Google Pay, PhonePe, Paytm, etc.</p>
+                            <div class="form-group">
+                                <label for="upi-id">UPI ID</label>
+                                <div class="upi-id">
+                                    <input type="text" id="upi-id" placeholder="name@upi" required>
+                                    <button>Verify</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cash on Delivery -->
+                    <div class="payment-method">
+                        <div class="payment-header">
+                            <input type="radio" name="payment" id="cod">
+                            <label for="cod">Cash on Delivery</label>
+                        </div>
+                        <div class="payment-content">
+                            <p>Pay when you receive your product. Additional COD fee of ₹40 may apply.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="place-order-btn"><a href="ordered_success.html" style="text-decoration: none; color: white;">Place Order</a></button>
+            </div>
+        </div>
+    </div>
+        <script>
+        // Simple script to handle payment method switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentHeaders = document.querySelectorAll('.payment-header');
+            const paymentContents = document.querySelectorAll('.payment-content');
+            
+            paymentHeaders.forEach((header, index) => {
+                header.addEventListener('click', () => {
+                    // Hide all payment contents
+                    paymentContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Select the radio button
+                    const radio = header.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Show the clicked payment content
+                    paymentContents[index].classList.add('active');
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

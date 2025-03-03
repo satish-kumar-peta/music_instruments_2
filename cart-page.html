@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4285f4;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4285f4;
+        }
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .user-actions a {
+            color: #555;
+            text-decoration: none;
+        }
+        .main-content {
+            padding: 30px 0;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        .cart-container {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        .cart-items {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .cart-summary {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        .cart-header {
+            display: grid;
+            grid-template-columns: 50px 1fr 120px 120px 50px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            color: #666;
+        }
+        .cart-item {
+            display: grid;
+            grid-template-columns: 50px 1fr 120px 120px 50px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            align-items: center;
+        }
+        .item-checkbox {
+            margin-left: 10px;
+        }
+        .item-details {
+            display: flex;
+            gap: 15px;
+        }
+        .item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .item-options {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .item-actions {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+        }
+        .item-actions a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        .item-actions a:hover {
+            text-decoration: underline;
+        }
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            margin: 0 8px;
+        }
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item-price, .item-total {
+            font-weight: 500;
+            text-align: center;
+        }
+        .item-remove {
+            color: #888;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+        }
+        .summary-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .checkout-btn:hover {
+            background-color: #3367d6;
+        }
+        .continue-shopping {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .continue-shopping a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        .promo-code {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .promo-title {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .promo-input {
+            display: flex;
+        }
+        .promo-input input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+        }
+        .promo-input button {
+            padding: 10px 15px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        .payment-options {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+        }
+        .empty-cart h2 {
+            margin-bottom: 15px;
+        }
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .shop-now-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .shop-now-btn:hover {
+            background-color: #3367d6;
+        }
+        
+        @media (max-width: 900px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            .cart-header {
+                display: none;
+            }
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .item-details {
+                flex-direction: column;
+            }
+            .item-info {
+                padding-left: 0;
+            }
+            .item-quantity, .item-price, .item-total {
+                justify-content: flex-start;
+                text-align: left;
+            }
+            .item-remove {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ShopName</div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Categories</a>
+                    <a href="#">Deals</a>
+                    <a href="#">New Arrivals</a>
+                </div>
+                <div class="user-actions">
+                    <a href="#">Cart (3)</a>
+                    <a href="#">Wishlist</a>
+                    <a href="#">Account</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>Your Shopping Cart (3 items)</h1>
+        
+        <div class="cart-container">
+            <div class="cart-items">
+                <div class="cart-header">
+                    <div class="item-checkbox"></div>
+                    <div>Product</div>
+                    <div>Quantity</div>
+                    <div>Price</div>
+                    <div></div>
+                </div>
+                
+                <!-- Item 1 -->
+                <div class="cart-item">
+                    <div class="item-checkbox">
+                        <input type="checkbox" checked>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-image">
+                            <img src="/api/placeholder/80/80" alt="Product image">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">Wireless Noise Cancelling Headphones</div>
+                            <div class="item-options">Color: Black | Size: Standard</div>
+                            <div class="item-actions">
+                                <a href="#">Save for Later</a>
+                                <a href="#">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="quantity-btn">-</button>
+                        <input type="text" class="quantity-input" value="1">
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <div class="item-price">$249.99</div>
+                    <div class="item-remove">✕</div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="cart-item">
+                    <div class="item-checkbox">
+                        <input type="checkbox" checked>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-image">
+                            <img src="/api/placeholder/80/80" alt="Product image">
+                        </div>
+                        <div class="item-info">
+                            <div class="item-title">Smartphone Power Bank 20000mAh</div>
+                            <div class="item-options">Color: White</div>
+                            <div class="item-actions">
+                                <a href="#">Save for Later</a>
+                                <a href="#">Add to Wishlist</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-quantity">

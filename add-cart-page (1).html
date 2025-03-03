@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - MusicMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container h1 {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 12px;
+            color: #ecf0f1;
+        }
+        
+        .cart-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .cart-header h2 {
+            color: #2c3e50;
+        }
+        
+        .continue-shopping {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .cart-sections {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .cart-items {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .cart-summary {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 4px;
+            align-self: flex-start;
+        }
+        
+        .cart-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            position: relative;
+        }
+        
+        .item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+        
+        .item-details {
+            flex: 1;
+            padding: 0 15px;
+        }
+        
+        .item-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .item-brand {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .item-availability {
+            color: #27ae60;
+            font-size: 14px;
+        }
+        
+        .item-actions {
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 30px;
+            border: 1px solid #ddd;
+            text-align: center;
+            margin: 0 5px;
+        }
+        
+        .item-actions a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        
+        .remove-btn {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            color: #e74c3c;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .checkout-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 0;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .empty-cart i {
+            font-size: 60px;
+            color: #bdc3c7;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .shop-now-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1>MUSIC MART</h1>
+            <p class="tagline">Your Rhythm, Our Instruments</p>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h2>Your Shopping Cart (3 items)</h2>
+            <a href="index.html" class="continue-shopping"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+        </div>
+        
+        <div class="cart-sections">
+            <div class="cart-items">
+                <!-- Cart Item 1 -->
+                <div class="cart-item">
+                    <img src="guitar.jpeg" alt="Electric Guitar" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-title">Electric Guitar</h3>
+                        <p class="item-price">₹15,999</p>
+                        <p class="item-brand">Brand: Fender</p>
+                        <p class="item-availability">In Stock</p>
+                    </div>
+                    <div class="item-actions">
+                        <div class="quantity-control">
+                            <div class="quantity-btn minus">-</div>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <div class="quantity-btn plus">+</div>
+                        </div>
+                        <a href="#" class="save-for-later">Save for later</a>
+                    </div>
+                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                </div>
+                
+                <!-- Cart Item 2 -->
+                <div class="cart-item">
+                    <img src="KEYBOARD.jpg" alt="Digital Piano" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-title">Digital Piano</h3>
+                        <p class="item-price">₹42,500</p>
+                        <p class="item-brand">Brand: Yamaha</p>
+                        <p class="item-availability">In Stock</p>
+                    </div>
+                    <div class="item-actions">
+                        <div class="quantity-control">
+                            <div class="quantity-btn minus">-</div>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <div class="quantity-btn plus">+</div>
+                        </div>
+                        <a href="#" class="save-for-later">Save for later</a>
+                    </div>
+                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                </div>
+                
+                <!-- Cart Item 3 -->
+                <div class="cart-item">
+                    <img src="micccro_phone.jpg" alt="Professional Microphone" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-title">Professional Microphone</h3>
+                        <p class="item-price">₹9,499</p>
+                        <p class="item-brand">Brand: Shure</p>
+                        <p class="item-availability">In Stock</p>
+                    </div>
+                    <div class="item-actions">
+                        <div class="quantity-control">
+                            <div class="quantity-btn minus">-</div>
+                            <input type="text" class="quantity-input" value="1" readonly>
+                            <div class="quantity-btn plus">+</div>
+                        </div>
+                        <a href="#" class="save-for-later">Save for later</a>
+                    </div>
+                    <button class="remove-btn"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-details">
+                    <div class="summary-item">
+                        <span>Subtotal (3 items)</span>
+                        <span>₹67,998</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Delivery</span>
+                        <span>₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Estimated Tax</span>
+                        <span>₹3,400</span>
+                    </div>
+                    <div class="summary-item summary-total">
+                        <span>Total</span>
+                        <span>₹71,398</span>
+                    </div>
+                </div>
+                
+                <a href="checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
+            </div>
+        </div>
+        
+        <!-- Example of Empty Cart State 
+        <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added any items to your cart yet.</p>
+            <a href="index.html" class="shop-now-btn">Shop Now</a>
+        </div>
+        -->
+    </div>
+    
+    <script>
+        // Simple script to handle quantity buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const minusButtons = document.querySelectorAll('.quantity-btn.minus');
+            const plusButtons = document.querySelectorAll('.quantity-btn.plus');
+            
+            minusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.nextElementSibling;
+                    let value = parseInt(input.value);
+                    if (value > 1) {
+                        input.value = value - 1;
+                    }
+                });
+            });
+            
+            plusButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                });
+            });
+            
+            // Remove item functionality
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const item = this.closest('.cart-item');
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.remove();
+                        // Update cart count and totals here
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Watchlist</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4285f4;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4285f4;
+        }
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .user-actions a {
+            color: #555;
+            text-decoration: none;
+        }
+        .main-content {
+            padding: 30px 0;
+        }
+        .page-title {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: normal;
+            margin: 0;
+        }
+        .watchlist-controls {
+            display: flex;
+            gap: 15px;
+        }
+        .select-all {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .watchlist-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .item-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .item-image {
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .item-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .action-button {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-button:hover {
+            background-color: white;
+        }
+        .item-details {
+            padding: 15px;
+        }
+        .item-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .item-price {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .current-price {
+            font-weight: bold;
+            color: #333;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 14px;
+        }
+        .discount {
+            background-color: #e9f5f0;
+            color: #2e7d60;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .item-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #666;
+        }
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart:hover {
+            background-color: #3367d6;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 50px 0;
+            color: #666;
+        }
+        .empty-state h2 {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        .browse-products {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #4285f4;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .browse-products:hover {
+            background-color: #3367d6;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 5px;
+        }
+        .page-link {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background-color: white;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .page-link:hover, .page-link.active {
+            background-color: #4285f4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ShopName</div>
+                <div class="nav-links">
+                    <a href="#"><a href="index.html">Home</a></a>
+                    <a href="#"><a href="explore-category-page.html">Categories</a></a>
+                    <a href="#"><a href="index.html">Deals</a></a>
+                    <a href="#">New Arrivals</a>
+                </div>
+                <div class="user-actions">
+                    <a href="#">Cart (3)</a>
+                    <a href="#">Watchlist (5)</a>
+                    <a href="#">Account</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container main-content">
+        <div class="page-title">
+            <h1>Your Watchlist</h1>
+            <div class="watchlist-controls">
+                <div class="select-all">
+                    <input type="checkbox" id="select-all-items">
+                    <label for="select-all-items">Select All</label> 
+                </div>
+                <button class="add-to-cart">Add Selected to Cart</button>
+            </div>
+        </div>
+
+        <div class="watchlist-items">
+            <!-- Item 1 -->
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="wooden drum sticks.jpg" alt="Product image">
+                    <div class="item-actions">
+                        <div class="action-button">❤️</div>
+                        <div class="action-button">✓</div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <div class="item-title">Wodden Drum Sticks</div>
+                    <div class="item-price">
+                        <span class="current-price">$349.99</span>
+                        <span class="original-price">$399.99</span>
+                        <span class="discount">-16%</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>⭐ 4.8 (243)</span>
+                        <span>In stock</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart"><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Item 2 -->
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="guitar_bag.jpg" alt="Product image">
+                    <div class="item-actions">
+                        <div class="action-button">❤️</div>
+                        <div class="action-button">✓</div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <div class="item-title">GUITAR BAG</div>
+                    <div class="item-price">
+                        <span class="current-price">$899.99</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>⭐ 4.6 (1.2k)</span>
+                        <span>In stock</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart"><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Item 3 -->
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="piano_keyboard_stand.jpg" alt="Product image">
+                    <div class="item-actions">
+                        <div class="action-button">❤️</div>
+                        <div class="action-button">✓</div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <div class="item-title">PIANO KEYBOARD STAND</div>
+                    <div class="item-price">
+                        <span class="current-price">$2999.99</span>
+                        <span class="original-price">$3999.99</span>
+                        <span class="discount">-18%</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>⭐ 4.7 (856)</span>
+                        <span>Few left</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart"><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Item 4 -->
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="Portable Bluetooth Speaker.jpg" alt="Product image">
+                    <div class="item-actions">
+                        <div class="action-button">❤️</div>
+                        <div class="action-button">✓</div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <div class="item-title">Portable Bluetooth Speaker</div>
+                    <div class="item-price">
+                        <span class="current-price">$129.99</span>
+                        <span class="original-price">$159.99</span>
+                        <span class="discount">-19%</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>⭐ 4.5 (427)</span>
+                        <span>In stock</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart"><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+            
+            <!-- Item 5 -->
+            <div class="item-card">
+                <div class="item-image">
+                    <img src="proffesinal_giutar_set.jpg" alt="Product image">
+                    <div class="item-actions">
+                        <div class="action-button">❤️</div>
+                        <div class="action-button">✓</div>
+                    </div>
+                </div>
+                <div class="item-details">
+                    <div class="item-title">Professional Guitar set</div>
+                    <div class="item-price">
+                        <span class="current-price">$1,299.99</span>
+                    </div>
+                    <div class="item-meta">
+                        <span>⭐ 4.9 (302)</span>
+                        <span>In stock</span>
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button>
+                    <button class="add-to-cart"><a href="buy-now-page.html" style="color: white; text-decoration: none;">Buy Now</a></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <a href="#" class="page-link">«</a>
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link">3</a>
+            <a href="#" class="page-link">»</a>
+        </div>
+    </div>
+</body>
+</html>
